@@ -1,0 +1,5 @@
+/* connecting css links through index.css */
+@import "./card.css";
+@import "./form.css";
+@import "./header.css";
+
