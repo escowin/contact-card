@@ -8,7 +8,7 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Edwin M. Escobar",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
