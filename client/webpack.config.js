@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // indicates to webpack which entry point to use for bundling. webpack then generates a web dependency located in /dist
 module.exports = {
@@ -32,4 +33,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+        template: "./index.html", // template basis
+        title: "Webpack Plugin" // defines content of the index.html <title> element
+    })
+  ]
 };

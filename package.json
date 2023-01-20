@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/escowin/contact-card#readme",
   "dependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "heroku-prebuild": "npm install --dev"
+  },
+  "engines": {
+    "node": "16.17.1"
   }
 }
