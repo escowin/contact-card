@@ -3,11 +3,18 @@
 import "./form";
 import "./submit";
 
+// - css
+import "../css/index.css";
+
+// bootstrap
+import { Tooltip, Toast, Popover } from "bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // - images
-// import Logo from "../images/logo.png";
+import Logo from "../images/logo.png";
 import Bear from "../images/bear.png";
 import Dog from "../images/dog.png";
-import Logo from "../images/escowinart.png";
+// import Logo from "../images/escowinart.png";
 
 // - dom manipulation
 window.addEventListener("load", function() {
