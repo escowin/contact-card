@@ -16,12 +16,16 @@ import Bear from "../images/bear.png";
 import Dog from "../images/dog.png";
 // import Logo from "../images/escowinart.png";
 
-// initDB function, which is called inside the window event listener function
-import { initdb } from "./database";
+// - database crud
+import { initdb, getDb, postDB } from "./database";
 
 // - dom manipulation
 window.addEventListener("load", function() {
     initdb();
+    getDb();
+    postDB("user", "user@test.com", "5125551122", "Dog");
+    getDb();
+
     this.document.getElementById('logo').src = Logo;
     this.document.getElementById('bearThumbnail').src = Bear;
     this.document.getElementById('dogThumbnail').src = Dog;
