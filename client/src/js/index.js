@@ -19,7 +19,6 @@ import Bear from "../images/bear.png";
 import Dog from "../images/dog.png";
 // import Logo from "../images/escowinart.png";
 
-
 // dom manipulation
 // - on-load functionality
 window.addEventListener("load", function () {
@@ -54,16 +53,16 @@ form.addEventListener("submit", (event) => {
     postDb(name, email, phone, profile);
   } else {
     // obtains passed form eleemnt values
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let phone = document.getElementById('phone').value;
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
     let profile = document.querySelector('input[type="radio"]:checked').value;
 
     // calls edit function, passing in above values
     editDb(profileId, name, email, phone, profile);
 
     fetchCards();
-    
+
     // Toggles the submit button back to POST functionality
     submitBtnToUpdate = false;
   }
@@ -77,31 +76,39 @@ form.addEventListener("submit", (event) => {
 });
 
 // - update functionality
-window.editCard = e => {
-    // contact id
-    profileId = parseInt(e.dataset.id);
+window.editCard = (e) => {
+  // contact id
+  profileId = parseInt(e.dataset.id);
 
-    // values pre-populates edit form
-    let editName = e.dataset.name;
-    let editEmail = e.dataset.email;
-    let editPhone = e.dataset.phone;
+  // values pre-populates edit form
+  let editName = e.dataset.name;
+  let editEmail = e.dataset.email;
+  let editPhone = e.dataset.phone;
 
-    document.getElementById('name').value = editName;
-    document.getElementById('email').value = editEmail;
-    document.getElementById('phone').value = editPhone;
+  document.getElementById("name").value = editName;
+  document.getElementById("email").value = editEmail;
+  document.getElementById("phone").value = editPhone;
 
-    // css
-    form.style.display = "block"
+  // css
+  form.style.display = "block";
 
-    // true | updates existing, rather than create, contact
-    submitBtnToUpdate = true;
-}
+  // true | updates existing, rather than create, contact
+  submitBtnToUpdate = true;
+};
 
 // - delete functionality
-window.deleteCard = e => {
-    let id = parseInt(e.id)
-    // deletes card
-    deleteDb(id);
-    // reloads dom
-    fetchCards();
+window.deleteCard = (e) => {
+  let id = parseInt(e.id);
+  // deletes card
+  deleteDb(id);
+  // reloads dom
+  fetchCards();
 };
+
+// - register service worker
+if ("serviceWorker" in navigator) {
+  // uses window load event to keep the page load performant
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js");
+  });
+}

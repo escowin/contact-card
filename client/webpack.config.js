@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin")
 
 // indicates to webpack which entry point to use for bundling. webpack then generates a web dependency located in /dist
 module.exports = {
@@ -37,6 +38,7 @@ module.exports = {
     new HtmlWebpackPlugin({
         template: "./index.html", // template basis
         title: "Webpack Plugin" // defines content of the index.html <title> element
-    })
+    }),
+    new WorkboxPlugin.GenerateSW()
   ]
 };
