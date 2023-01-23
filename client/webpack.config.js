@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const WorkboxPlugin = require("workbox-webpack-plugin")
+const { InjectManifest } = require("workbox-webpack-plugin");
 
 // indicates to webpack which entry point to use for bundling. webpack then generates a web dependency located in /dist
 module.exports = {
@@ -22,7 +22,8 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
-      { // babel handles javascript files
+      {
+        // babel handles javascript files
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: {
@@ -36,9 +37,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: "./index.html", // template basis
-        title: "Webpack Plugin" // defines content of the index.html <title> element
+      template: "./index.html", // template basis
+      title: "Webpack Plugin", // defines content of the index.html <title> element
     }),
-    new WorkboxPlugin.GenerateSW()
-  ]
+    new InjectManifest({
+      swSrc: "./src/sw.js",
+      swDest: "service-worker.js",
+    }),
+  ],
 };
