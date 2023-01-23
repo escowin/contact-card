@@ -20,7 +20,7 @@ export const initdb = async () => {
   });
 };
 
-// - read | get contact_db database
+// - read | get contacts from the database
 export const getDb = async () => {
   // console.log('GET database');
   // indexDB database connection with specified version
@@ -38,7 +38,7 @@ export const getDb = async () => {
   return result;
 };
 
-// - post
+// - post | a contact to the database w/ specified paramter values
 export const postDb = async (name, email, phone, profile) => {
   const contactDb = await openDB("contact_db", 1);
   // readwrite | posting privileges
@@ -55,3 +55,22 @@ export const postDb = async (name, email, phone, profile) => {
 
   console.log("post | saved contact to indexdb database", result);
 };
+
+// - delete | a contact from the database by its id
+export const deleteDb = async (id) => {
+  console.log('contact to be deleted', id);
+
+  // connection to the contact_db database version 1
+  const contactDb = await openDB('contact_db', 1);
+  // transaction with specified store & data privileges (readme | getting privileges)
+  const tx = contactDb.transaction('contacts', 'readwrite');
+  // specified object store
+  const store = tx.objectStore('contacts');
+  // delete request
+  const request = store.delete(id);
+
+  // request result
+  const result = await request;
+  console.log('delete | removed contact from database', result);
+  return result?.value;
+}

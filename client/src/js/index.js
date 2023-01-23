@@ -17,9 +17,10 @@ import Dog from "../images/dog.png";
 // import Logo from "../images/escowinart.png";
 
 // - database crud
-import { initdb, getDb, postDb } from "./database";
+import { initdb, getDb, postDb, deleteDb } from "./database";
 import { fetchCards } from "./cards";
 
+// dom manipulation
 // - on-load functionality
 window.addEventListener("load", function () {
   initdb();
@@ -31,6 +32,15 @@ window.addEventListener("load", function () {
   this.document.getElementById("bearThumbnail").src = Bear;
   this.document.getElementById("dogThumbnail").src = Dog;
 });
+
+// - delete functionality
+window.deleteCard = e => {
+    let id = parseInt(e.id)
+    // deletes card
+    deleteDb(id);
+    // reloads dom
+    fetchCards();
+};
 
 // - form functionality
 const form = document.getElementById("formToggle");
@@ -66,3 +76,4 @@ form.addEventListener("submit", (event) => {
   // Reload the DOM
   fetchCards();
 });
+
