@@ -5,7 +5,7 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 // indicates to webpack which entry point to use for bundling. webpack then generates a web dependency located in /dist
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/js/index.js",
   output: {
     filename: "bundle.js",
